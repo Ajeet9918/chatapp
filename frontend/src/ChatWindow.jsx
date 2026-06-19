@@ -25,20 +25,26 @@ export default function ChatWindow({ conversation, user, keyPair, socket, title,
         const other = conversation.members.find(
           (m) => m.id !== user.id && m.public_key
         );
+        console.log('GROUP other member:', other);
         if (other) {
           const key = await deriveSharedKey(keyPair.privateKey, other.public_key);
           setSharedKey(key);
         }
       } else {
         const other = conversation.members.find((m) => m.id !== user.id);
+        console.log('OTHER USER:', other);
+        console.log('OTHER PUBLIC KEY:', other?.public_key);
+        console.log('MY KEYPAIR:', keyPair);
         if (other && other.public_key) {
           const key = await deriveSharedKey(keyPair.privateKey, other.public_key);
+          console.log('SHARED KEY DERIVED:', key);
           setSharedKey(key);
+        } else {
+          console.log('NO PUBLIC KEY FOUND - this is why decrypt fails');
         }
       }
       setReady(true);
     }
-    setup();
   }, [conversation, keyPair]);
 
   // Step 2: Load & decrypt message history
