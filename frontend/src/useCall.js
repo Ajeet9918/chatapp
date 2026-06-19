@@ -2,25 +2,9 @@
 import { useState, useRef, useCallback, useEffect } from 'react';
 
 const ICE_SERVERS = [
-  {
-    urls: 'stun:stun.relay.metered.ca:80'
-  },
-  {
-    urls: 'turn:standard.relay.metered.ca:80',
-    username: import.meta.env.VITE_TURN_USER,
-    credential: import.meta.env.VITE_TURN_PASS
-  },
-  {
-    urls: 'turn:standard.relay.metered.ca:443',
-    username: import.meta.env.VITE_TURN_USER,
-    credential: import.meta.env.VITE_TURN_PASS
-  },
-  {
-    urls: 'turn:standard.relay.metered.ca:443?transport=tcp',
-    username: import.meta.env.VITE_TURN_USER,
-    credential: import.meta.env.VITE_TURN_PASS
-  }
+  { urls: 'stun:stun.l.google.com:19302' }
 ];
+
 export function useCall(socket, conversationId, currentUser) {
   const [callState, setCallState] = useState('idle'); 
   const [callType, setCallType] = useState('audio'); 

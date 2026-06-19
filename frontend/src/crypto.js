@@ -54,14 +54,6 @@ export async function loadLocalKeyPair() {
     publicKeyB64: pubB64
   };
 }
-export async function generateFreshKeyPair() {
-  const generated = await generateKeyPair();
-  await saveKeyPairLocally(generated);
-  const kp = await loadLocalKeyPair();
-  return kp;
-}
-
-// Load existing keypair (call this on login)
 export async function ensureLocalKeyPair() {
   let kp = await loadLocalKeyPair();
   if (!kp) {
