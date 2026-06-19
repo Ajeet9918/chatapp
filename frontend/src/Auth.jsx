@@ -3,7 +3,7 @@ import * as api from './api';
 import { ensureLocalKeyPair, exportPublicKey } from './crypto';
 
 export default function Auth({ onAuthed }) {
-  const [mode, setMode] = useState('login'); // 'login' | 'register'
+  const [mode, setMode] = useState('login'); 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
