@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import * as api from './api';
-import { ensureLocalKeyPair } from './crypto';
 import { ensureLocalKeyPair, generateFreshKeyPair } from './crypto';
 
 export default function Auth({ onAuthed }) {
