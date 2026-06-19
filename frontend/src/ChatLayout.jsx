@@ -142,17 +142,21 @@ export default function ChatLayout({ user, keyPair, onLogout }) {
 
       <div className={`main-panel ${activeConv ? 'main-panel-active-mobile' : ''}`}>
         {activeConv ? (
-          <ChatWindow
-            key={activeConv.id}
-            conversation={activeConv}
-            user={user}
-            keyPair={keyPair}
-            socket={socketRef.current}
-            title={getConvTitle(activeConv)}
-            presence={presence}
-            otherUser={getOtherMember(activeConv)}
-            onBack={() => setActiveConv(null)}
-          />
+          <>
+            {console.log('ACTIVE CONV:', activeConv)}
+            {console.log('KEYPAIR IN LAYOUT:', keyPair)}
+            <ChatWindow
+              key={activeConv.id}
+              conversation={activeConv}
+              user={user}
+              keyPair={keyPair}
+              socket={socketRef.current}
+              title={getConvTitle(activeConv)}
+              presence={presence}
+              otherUser={getOtherMember(activeConv)}
+              onBack={() => setActiveConv(null)}
+            />
+          </>
         ) : (
           <div className="center-screen">
             <p>Select a conversation or start a new one 🔒</p>

@@ -19,10 +19,13 @@ export default function App() {
   }, []);
 
   useEffect(() => {
-    if (user) {
-      ensureLocalKeyPair().then(setKeyPair);
-    }
-  }, [user]);
+  if (user) {
+    ensureLocalKeyPair().then((kp) => {
+      console.log('KEYPAIR LOADED:', kp);
+      setKeyPair(kp);
+    });
+  }
+}, [user]);
 
   function handleAuthed(userData, token) {
     localStorage.setItem('token', token);
