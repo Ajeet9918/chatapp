@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import * as api from './api';
 import { ensureLocalKeyPair } from './crypto';
+import { ensureLocalKeyPair, generateFreshKeyPair } from './crypto';
 
 export default function Auth({ onAuthed }) {
   const [mode, setMode] = useState('login');
@@ -59,7 +60,7 @@ export default function Auth({ onAuthed }) {
     setBusy(true);
     try {
       if (mode === 'register') {
-        const kp = await ensureLocalKeyPair();
+        const kp = await generateFreshKeyPair();
         const data = await api.register(
           form.username, form.password, kp.publicKeyB64,
           { fullName: form.fullName, mobile: form.mobile }
