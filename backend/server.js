@@ -73,13 +73,6 @@ app.post('/api/login', async (req, res) => {
   const token = jwt.sign({ id: user.id, username: user.username }, JWT_SECRET, { expiresIn: '7d' });
   res.json({ token, user: { id: user.id, username: user.username, publicKey: user.public_key } });
 });
-app.get('/api/reset-db', (req, res) => {
-  db.prepare('DELETE FROM messages').run();
-  db.prepare('DELETE FROM conversation_members').run();
-  db.prepare('DELETE FROM conversations').run();
-  db.prepare('DELETE FROM users').run();
-  res.json({ ok: true, message: 'Database cleared' });
-});
 
 // Get a user's public key (needed before starting an encrypted chat with them)
 app.get('/api/users/:username/key', authMiddleware, (req, res) => {
